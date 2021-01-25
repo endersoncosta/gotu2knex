@@ -26,13 +26,13 @@ describe('Query Find By', () => {
     ]
 
     const knex = () => {
-        return  () => ({
-            select: (columns) => ({
+        return { withSchema: () => { return {from: ()=> {
+           return { select: (columns) => ({
                     whereIn: (column, values) => {
                         return returnData
                     }
-            })
-        })
+            })}
+        }}}}
     }
 
     it('should return entities using table field', async () => {

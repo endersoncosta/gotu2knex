@@ -31,14 +31,24 @@ describe("Persist an Entity", () => {
   let querySQL
   let quetyValues
 
-  const knex = () => () => ({
-    raw: (sql, values) => {
-      querySQL = sql
-      quetyValues = values
-      return true
-    },
-    where: () => ({ update: () => 1 }),
-  })
+  const knex = () => {
+    return {
+      withSchema: () => {
+        return {
+          from: () => {
+            return {
+              raw: (sql, values) => {
+                querySQL = sql;
+                quetyValues = values;
+                return true;
+              },
+              where: () => ({ update: () => 1 }),
+            }
+          }
+        }
+      }
+    }
+  }
 
   it("should persist entities", async () => {
     //given

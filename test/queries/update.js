@@ -20,9 +20,8 @@ describe("Update an Entity", () => {
   }
 
   const knex = () => {
-    return () => ({ where: (columns) => ({ update: (columns) => 1 }) })
+    return { withSchema: () => { return {from: ()=> { return { where: (columns) => ({ update: (columns) => 1 })}} }} } 
   }
-
   it("should update an entity", async () => {
     //given
     const anEntity = givenAnEntity()

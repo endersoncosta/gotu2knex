@@ -33,7 +33,7 @@ describe('Query Find by ID', () => {
                 return {
                   select: (columns) => ({
                     whereIn: (column, values) => {
-                      return returnData;
+                      return returnData
                     }
                   })
                 }

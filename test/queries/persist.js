@@ -38,9 +38,9 @@ describe("Persist an Entity", () => {
           from: () => {
             return {
               raw: (sql, values) => {
-                querySQL = sql;
-                quetyValues = values;
-                return true;
+                querySQL = sql
+                quetyValues = values
+                return true
               },
               where: () => ({ update: () => 1 }),
             }

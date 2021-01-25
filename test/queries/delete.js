@@ -20,7 +20,7 @@ describe("Delete an Entity", () => {
   }
 
   const knex = () => {
-    return () => ({ where: (columns) => ({ delete: (columns) => 1 }) })
+    return { withSchema: () => { return {from: ()=> { return { where: (columns) => ({ delete: (columns) => 1 })}} }} } 
   }
 
   it("should delete an entity", async () => {

@@ -20,7 +20,7 @@ describe("Insert an Entity", () => {
   }
 
   const knex = () => {
-    return () => ({ insert: (columns) => true })
+    return { withSchema: () => { return {from: ()=> {return { insert: (columns) => true }}}}}
   }
 
   it("should insert an entity", async () => {

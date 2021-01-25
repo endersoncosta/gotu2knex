@@ -26,14 +26,23 @@ describe('Query Find by ID', () => {
     ]
 
     const knex = () => {
-        return  () => ({
-            select: (columns) => ({
+        return {
+          withSchema: () => {
+            return {
+              from: () => {
+                return {
+                  select: (columns) => ({
                     whereIn: (column, values) => {
-                        return returnData
+                      return returnData
                     }
-            })
-        })
-    }
+                  })
+                }
+              }
+            }
+          }
+        }
+      }
+    
 
     it('should return entities', async () => {
         //given

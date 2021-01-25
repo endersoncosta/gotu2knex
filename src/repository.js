@@ -10,13 +10,10 @@ module.exports = class Repository {
     this.convention = di.convention
     this.table = options.table
     this.schema = options.schema
-    this.tableQualifiedName = this.schema
-      ? `${this.schema}.${this.table}`
-      : `${this.table}`
     this.entity = options.entity
     this.entityIDs = options.ids
     this.run = di.knex(options.dbConfig)
-    this.runner = di.knex(options.dbConfig)(this.tableQualifiedName)
+    this.runner = di.knex(options.dbConfig).withSchema(this.schema).from(this.table)
     this.dataMapper = DataMapper.getFrom(this.entity, this.entityIDs)
   }
 
